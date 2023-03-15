@@ -3,49 +3,70 @@ import React, { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = () => {
-    // const [enteredTitle, setEnteredTitle] = useState('');
-    // const [enteredAmount, setEnteredAmount] = useState('');
-    // const [enteredDate, setEnteredDate] = useState('');
-
-    // const titleChangeHandler = (e) => {
-    //     setEnteredTitle(e.target.value);
-    // }
-    // const amountChangeHandler = (e) => {
-    //     setEnteredAmount(e.target.value);
-    // };
-    // const dateChaneHandler = (e) => {
-    //     setEnteredDate(e.target.value);
-    // };
-
-    const [userInput, setUserInput] = useState({
-        enteredTitle: '',
-        enteredAmount: '',
-        enteredDate: ''
-
-    });
+    const [enteredTitle, setEnteredTitle] = useState('');
+    const [enteredAmount, setEnteredAmount] = useState('');
+    const [enteredDate, setEnteredDate] = useState('');
 
     const titleChangeHandler = (e) => {
-        setUserInput({
-            ...userInput,
-            enteredTitle: e.target.value,
-        })
+        setEnteredTitle(e.target.value);
     }
-
     const amountChangeHandler = (e) => {
-        setUserInput({
-            ...userInput,
-            enteredAmount: e.target.value,
-        })
+        setEnteredAmount(e.target.value);
     };
     const dateChaneHandler = (e) => {
-        setUserInput({
-            ...userInput,
-            enteredDate: e.target.value,
-        })
+        setEnteredDate(e.target.value);
     };
 
+    // const [userInput, setUserInput] = useState({
+    //     enteredTitle: '',
+    //     enteredAmount: '',
+    //     enteredDate: ''
+
+    // });
+    //best practices
+    // const titleChangeHandler = (e) => {
+    //     setUserInput({
+    //         ...userInput,
+    //         enteredTitle: e.target.value,
+    //     })
+    // }
+
+    // const titleChangeHandler = (e) => {
+    //     setUserInput((prevState) => {
+    //         return {
+    //             ...prevState, enteredTitle: e.target.value
+    //         }
+    //     })
+    // }
+
+    // const amountChangeHandler = (e) => {
+    //     setUserInput((prevState) => {
+    //         return {
+    //             ...prevState, enteredAmount: e.target.value
+    //         }
+    //     })
+    // };
+
+    // const dateChaneHandler = (e) => {
+    //     setUserInput((prevState) => {
+    //         return {
+    //             ...prevState, enteredDate: e.target.value
+    //         }
+    //     })
+    // };
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        const expenseData = {
+            title: enteredTitle,
+            amount: enteredAmount,
+            date: new Date(enteredDate),
+        }
+        console.log(expenseData);
+    }
+
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <div className='new-expense__controls'>
                 <div className='new-expense__control'>
                     <label>Title</label>
